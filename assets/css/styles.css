@@ -1,8 +1,8 @@
-/* Estilos CSS vanilla para Buscador de Recetas con ajustes de márgenes y animaciones */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f9fafb;
   color: #333;
 }
@@ -31,6 +31,7 @@ body {
 .logo-text {
   font-weight: bold;
   font-size: 1.1rem;
+  color: #93061E;
 }
 
 .navbar-right .nav-link {
@@ -41,11 +42,11 @@ body {
 }
 
 .navbar-right .nav-link:hover {
-  color: #e60073;
+  color: #FF5F72;
 }
 
 .navbar-right .nav-link.active {
-  color: #e60073;
+  color: #FF5F72;
   font-weight: bold;
 }
 
@@ -56,7 +57,7 @@ body {
 }
 
 .banner-content {
-  background: linear-gradient(to right, #f43f5e, #f97316);
+  background: linear-gradient(to right, #DF1B3B, #E04332);
   border-radius: 1rem;
   padding: 1.5rem;
   color: white;
@@ -82,6 +83,7 @@ body {
 .filters h2 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
+  color: #93061E;
 }
 
 .category-buttons {
@@ -98,13 +100,14 @@ body {
   background: white;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .category-btn.active,
 .category-btn:hover {
-  background: #ffe4e6;
-  border-color: #f43f5e;
-  color: #b91c1c;
+  background: #FFEBEE;
+  border-color: #DF1B3B;
+  color: #93061E;
 }
 
 .search-input {
@@ -114,11 +117,12 @@ body {
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .search-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.3);
+  box-shadow: 0 0 0 2px rgba(223, 27, 59, 0.3);
 }
 
 .recipes {
@@ -155,7 +159,8 @@ body {
 .recipe-title {
   margin: 0 0 0.5rem;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 600;
+  color: #333;
 }
 
 .recipe-actions {
@@ -165,17 +170,18 @@ body {
 }
 
 .view-btn {
-  background: #111827;
+  background: #93061E;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .view-btn:hover {
-  background: #1f2937;
+  background: #DF1B3B;
 }
 
 .favorite-btn {
@@ -185,10 +191,11 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .favorite-btn:hover {
-  background: #f3f4f6;
+  background: #f8f8f8;
   border-color: #999;
 }
 
