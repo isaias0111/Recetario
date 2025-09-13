@@ -395,6 +395,56 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", positionDropdown);
   window.addEventListener("scroll", positionDropdown);
 });
+// ===============================
+// Filtrado por categoría
+// ===============================
+const categoryButtons = $$(".category-btn");
+let selectedCategory = "Todos"; // valor inicial
+
+categoryButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const category = btn.textContent.trim();
+
+    // Si ya está seleccionada, desactiva el filtro
+    if (selectedCategory === category) {
+      selectedCategory = "Todos"; // quitar filtro
+      btn.classList.remove("active");
+    } else {
+      selectedCategory = category;
+      categoryButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    applyFilters(); // aplicar filtros combinados
+  });
+});
+
+// ===============================
+// Filtro por búsqueda
+// ===============================
+const searchInput = $("#searchInput");
+
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    applyFilters(); // aplicar filtros combinados
+  });
+}
+
+// ===============================
+// Función combinada de filtrado
+// ===============================
+function applyFilters() {
+  const search = (searchInput?.value || "").toLowerCase();
+
+  $$(".recipe-card").forEach(card => {
+    const title = card.querySelector(".recipe-title")?.textContent.toLowerCase();
+    const category = card.dataset.category;
+    const matchesCategory = selectedCategory === "Todos" || selectedCategory === category;
+    const matchesSearch = title?.includes(search);
+
+    card.style.display = matchesCategory && matchesSearch ? "" : "none";
+  });
+}
 
 // Sincronizar entre pestañas/ventanas
 window.addEventListener('storage', (e) => {
