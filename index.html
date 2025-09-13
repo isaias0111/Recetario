@@ -1,23 +1,26 @@
-<!--
-  Descripción:
-  -------------
-  Página principal del "Buscador de Recetas" para CEUTEC. Permite a los usuarios explorar recetas por categorías, buscar recetas específicas dentro de una categoría, y marcar recetas como favoritas.
-
-  Nota: Las categorías y recetas están definidas de forma estática en el HTML. Para hacerlo dinámico en el futuro, se recomienda cargar estos datos desde una base de datos o archivo JSON usando JavaScript.
--->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de Recetas</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-    <header class="navbar">
-      <div class="navbar-left">
-        <img src="assets/images/logo.png" alt="logo" class="logo" />
-        <span class="logo-text">Recetas CEUTEC</span>
-      </div>
-      <nav class="navbar-right">
-        <a href="#" class="nav-link active">Inicio</a>
-        <a href="#" class="nav-link">Mis Favoritos</a>
-      </nav>
-    </header>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <span class="logo-text">Recetas CEUTEC</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="#" class="nav-link active">Inicio</a>
+      <a href="#" class="nav-link">Mis Favoritos</a>
+    </nav>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="container">
 
     <!-- Banner -->
     <section class="banner">
@@ -55,121 +58,137 @@
     </section>
 
     <!-- Recetas -->
-<section class="recipes" id="recipeContainer">
-  <div class="recipe-card" data-category="Pollo">
-    <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limón" class="recipe-image" />
-    <h3 class="recipe-title">Pollo al Limón</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+    <section class="recipes" id="recipeContainer">
+      <!-- Tarjetas de recetas -->
+      <!-- Cada tarjeta debe tener el atributo data-category -->
+      <!-- Receta 1 -->
+      <div class="recipe-card" data-category="Pollo">
+        <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limón" class="recipe-image" />
+        <h3 class="recipe-title">Pollo al Limón</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Res">
-    <img src="assets/images/carne.jpg" alt="Carne Asada" class="recipe-image" />
-    <h3 class="recipe-title">Carne Asada</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 2 -->
+      <div class="recipe-card" data-category="Res">
+        <img src="assets/images/carne.jpg" alt="Carne Asada" class="recipe-image" />
+        <h3 class="recipe-title">Carne Asada</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Cerdo">
-    <img src="assets/images/chuleta.avif" alt="Chuleta de Cerdo" class="recipe-image" />
-    <h3 class="recipe-title">Chuleta de Cerdo</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 3 -->
+      <div class="recipe-card" data-category="Cerdo">
+        <img src="assets/images/chuleta.avif" alt="Chuleta de Cerdo" class="recipe-image" />
+        <h3 class="recipe-title">Chuleta de Cerdo</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Mariscos">
-    <img src="assets/images/marisco.jpg" alt="Mariscos Mixtos" class="recipe-image" />
-    <h3 class="recipe-title">Mariscos Mixtos</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 4 -->
+      <div class="recipe-card" data-category="Mariscos">
+        <img src="assets/images/marisco.jpg" alt="Mariscos Mixtos" class="recipe-image" />
+        <h3 class="recipe-title">Mariscos Mixtos</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Pescado">
-    <img src="assets/images/pescado.avif" alt="Pescado al Limón" class="recipe-image" />
-    <h3 class="recipe-title">Pescado al Limón</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 5 -->
+      <div class="recipe-card" data-category="Pescado">
+        <img src="assets/images/pescado.avif" alt="Pescado al Limón" class="recipe-image" />
+        <h3 class="recipe-title">Pescado al Limón</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Vegano">
-    <img src="assets/images/ensalada vegana.avif" alt="Ensalada Vegana" class="recipe-image" />
-    <h3 class="recipe-title">Ensalada Vegana</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 6 -->
+      <div class="recipe-card" data-category="Vegano">
+        <img src="assets/images/ensalada vegana.avif" alt="Ensalada Vegana" class="recipe-image" />
+        <h3 class="recipe-title">Ensalada Vegana</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Pastas">
-    <img src="assets/images/pastatomate.avif" alt="Pasta con Tomate" class="recipe-image" />
-    <h3 class="recipe-title">Pasta con Tomate</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 7 -->
+      <div class="recipe-card" data-category="Pastas">
+        <img src="assets/images/pastatomate.avif" alt="Pasta con Tomate" class="recipe-image" />
+        <h3 class="recipe-title">Pasta con Tomate</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Postres">
-    <img src="assets/images/pastel.avif" alt="Pastel de Frutas" class="recipe-image" />
-    <h3 class="recipe-title">Pastel de Frutas</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 8 -->
+      <div class="recipe-card" data-category="Postres">
+        <img src="assets/images/pastel.avif" alt="Pastel de Frutas" class="recipe-image" />
+        <h3 class="recipe-title">Pastel de Frutas</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Sopas">
-    <img src="assets/images/sopa.jpg" alt="Sopa de Calabaza" class="recipe-image" />
-    <h3 class="recipe-title">Sopa de Calabaza</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 9 -->
+      <div class="recipe-card" data-category="Sopas">
+        <img src="assets/images/sopa.jpg" alt="Sopa de Calabaza" class="recipe-image" />
+        <h3 class="recipe-title">Sopa de Calabaza</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Ensaladas">
-    <img src="assets/images/ensalada.avif" alt="Ensalada Fresca" class="recipe-image" />
-    <h3 class="recipe-title">Ensalada Fresca</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 10 -->
+      <div class="recipe-card" data-category="Ensaladas">
+        <img src="assets/images/ensalada.avif" alt="Ensalada Fresca" class="recipe-image" />
+        <h3 class="recipe-title">Ensalada Fresca</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Desayunos">
-    <img src="assets/images/desayuno.avif" alt="Desayuno Completo" class="recipe-image" />
-    <h3 class="recipe-title">Desayuno Completo</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
+      <!-- Receta 11 -->
+      <div class="recipe-card" data-category="Desayunos">
+        <img src="assets/images/desayuno.avif" alt="Desayuno Completo" class="recipe-image" />
+        <h3 class="recipe-title">Desayuno Completo</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
 
-  <div class="recipe-card" data-category="Vegano">
-    <img src="assets/images/bowl.jpg" alt="Bowl Vegano" class="recipe-image" />
-    <h3 class="recipe-title">Bowl Vegano</h3>
-    <div class="recipe-actions">
-      <button class="view-btn">Ver receta</button>
-      <button class="favorite-btn">☆ Favorito</button>
-    </div>
-  </div>
-</section>
+      <!-- Receta 12 -->
+      <div class="recipe-card" data-category="Vegano">
+        <img src="assets/images/bowl.jpg" alt="Bowl Vegano" class="recipe-image" />
+        <h3 class="recipe-title">Bowl Vegano</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
+  </footer>
 
-    <script src="assets/js/app.js"></script>
-  </body>
+  <!-- JavaScript -->
+  <script src="assets/js/app.js"></script>
+</body>
 </html>
