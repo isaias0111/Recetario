@@ -1,0 +1,203 @@
+[
+  {
+    "id": "pollo-al-limon",
+    "title": "Pollo al Limón",
+    "image": "assets/images/Lemon-Chicken-Web-1.jpg",
+    "ingredientes": [
+      "2 pechugas de pollo",
+      "1 limón (jugo y ralladura)",
+      "2 dientes de ajo picados",
+      "2 cdas de aceite de oliva",
+      "Sal y pimienta al gusto"
+    ],
+    "pasos": [
+      "Marinar el pollo con limón, ajo, aceite, sal y pimienta por 30 minutos.",
+      "Cocinar en sartén caliente hasta dorar ambos lados.",
+      "Servir con ralladura de limón por encima."
+    ]
+  },
+  {
+    "id": "carne-asada",
+    "title": "Carne Asada",
+    "image": "assets/images/carne.jpg",
+    "ingredientes": [
+      "500g de carne para asar",
+      "1 cda de salsa inglesa",
+      "1 cda de aceite vegetal",
+      "Sal y pimienta al gusto"
+    ],
+    "pasos": [
+      "Marinar la carne con los ingredientes por al menos 1 hora.",
+      "Asar en parrilla a fuego medio-alto.",
+      "Reposar 5 minutos antes de servir."
+    ]
+  },
+  {
+    "id": "chuleta-de-cerdo",
+    "title": "Chuleta de Cerdo",
+    "image": "assets/images/chuleta.avif",
+    "ingredientes": [
+      "2 chuletas de cerdo",
+      "1 rama de romero",
+      "1 manzana en rebanadas",
+      "Sal y pimienta al gusto"
+    ],
+    "pasos": [
+      "Sazonar las chuletas y sellarlas en sartén.",
+      "Agregar manzanas y romero, cocinar tapado por 10 minutos.",
+      "Servir con jugo de cocción."
+    ]
+  },
+  {
+    "id": "mariscos-mixtos",
+    "title": "Mariscos Mixtos",
+    "image": "assets/images/marisco.jpg",
+    "ingredientes": [
+      "250g camarones",
+      "250g calamares",
+      "Harina para empanizar",
+      "Aceite para freír",
+      "Sal al gusto"
+    ],
+    "pasos": [
+      "Enharinar los mariscos.",
+      "Freír en aceite caliente hasta dorar.",
+      "Escurrir y servir con limón."
+    ]
+  },
+  {
+    "id": "pescado-al-limon",
+    "title": "Pescado al Limón",
+    "image": "assets/images/pescado.avif",
+    "ingredientes": [
+      "2 filetes de pescado blanco",
+      "1 limón",
+      "1 diente de ajo",
+      "Perejil fresco",
+      "Sal y pimienta"
+    ],
+    "pasos": [
+      "Sazonar el pescado y cocinar en sartén.",
+      "Agregar jugo de limón y ajo picado.",
+      "Servir con perejil fresco."
+    ]
+  },
+  {
+    "id": "ensalada-vegana",
+    "title": "Ensalada Vegana",
+    "image": "assets/images/ensalada vegana.avif",
+    "ingredientes": [
+      "Lechuga",
+      "Tomates cherry",
+      "Pepino",
+      "Pimiento",
+      "Vinagreta de limón"
+    ],
+    "pasos": [
+      "Lavar y cortar los vegetales.",
+      "Mezclar en un bol.",
+      "Agregar vinagreta al gusto."
+    ]
+  },
+  {
+    "id": "pasta-con-tomate",
+    "title": "Pasta con Tomate",
+    "image": "assets/images/pastatomate.avif",
+    "ingredientes": [
+      "200g pasta corta",
+      "Tomates cherry",
+      "Albahaca fresca",
+      "Aceite de oliva",
+      "Queso parmesano"
+    ],
+    "pasos": [
+      "Cocer la pasta y escurrir.",
+      "Saltear tomates con aceite.",
+      "Mezclar con la pasta y albahaca, servir con parmesano."
+    ]
+  },
+  {
+    "id": "pastel-de-frutas",
+    "title": "Pastel de Frutas",
+    "image": "assets/images/pastel.avif",
+    "ingredientes": [
+      "Bizcocho base",
+      "Crema chantilly",
+      "Frutas frescas surtidas",
+      "Gelatina transparente"
+    ],
+    "pasos": [
+      "Cubrir el bizcocho con crema.",
+      "Agregar frutas en la parte superior.",
+      "Barnizar con gelatina y refrigerar."
+    ]
+  },
+  {
+    "id": "sopa-de-calabaza",
+    "title": "Sopa de Calabaza",
+    "image": "assets/images/sopa.jpg",
+    "ingredientes": [
+      "500g calabaza",
+      "1 cebolla",
+      "1 diente de ajo",
+      "500ml caldo de vegetales",
+      "Crema al gusto"
+    ],
+    "pasos": [
+      "Saltear cebolla y ajo, agregar calabaza y caldo.",
+      "Cocinar hasta ablandar y licuar.",
+      "Servir con crema."
+    ]
+  },
+  {
+    "id": "ensalada-fresca",
+    "title": "Ensalada Fresca",
+    "image": "assets/images/ensalada.avif",
+    "ingredientes": [
+      "Lechuga romana",
+      "Tomates",
+      "Aceitunas",
+      "Vinagre balsámico",
+      "Aceite de oliva"
+    ],
+    "pasos": [
+      "Cortar todos los ingredientes.",
+      "Mezclar y aliñar con vinagre y aceite.",
+      "Servir fría."
+    ]
+  },
+  {
+    "id": "desayuno-completo",
+    "title": "Desayuno Completo",
+    "image": "assets/images/desayuno.avif",
+    "ingredientes": [
+      "2 huevos",
+      "2 tiras de tocino",
+      "Tostadas",
+      "Papas fritas",
+      "Café"
+    ],
+    "pasos": [
+      "Freír el tocino y los huevos.",
+      "Tostar pan y servir con papas.",
+      "Acompañar con café caliente."
+    ]
+  },
+  {
+    "id": "bowl-vegano",
+    "title": "Bowl Vegano",
+    "image": "assets/images/bolw.jpg",
+    "ingredientes": [
+      "Arroz integral",
+      "Garbanzos",
+      "Palta",
+      "Zanahoria rallada",
+      "Salsa tahini"
+    ],
+    "pasos": [
+      "Cocinar el arroz y garbanzos.",
+      "Servir en bowl con vegetales.",
+      "Agregar salsa tahini al gusto."
+    ]
+  }
+]

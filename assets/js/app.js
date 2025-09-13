@@ -248,9 +248,9 @@ function markFavButtonInModal(btn, fav) {
 }
 
 function buildRecipeModal(info) {
+  const receta = recetaData.find(r => r.id === info.id);
   const fav = isFavorite(info.id);
 
-  // UI: header con título y cerrar
   const header = `
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
       <h2 style="margin:0;font-size:1.4rem;color:#222;">${info.title}</h2>
@@ -259,34 +259,36 @@ function buildRecipeModal(info) {
     </div>
   `;
 
-  // Imagen grande
   const image = `
     <img src="${info.image}" alt="${info.title}"
       style="width:100%;height:320px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
   `;
 
-  // Acciones (favorito + placeholder ver receta real)
   const actions = `
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
       <button data-modal-fav data-id="${info.id}" data-title="${info.title}" data-image="${info.image}"></button>
-      <a href="#" style="display:inline-block;background:#93061E;color:#fff;text-decoration:none;padding:.6rem 1rem;border-radius:.6rem;">Abrir receta completa</a>
     </div>
   `;
 
-  // Contenido placeholder (si no tienes ingredientes/pasos aún)
+  let ingredientesHTML = "<ul>" + receta.ingredientes.map(i => `<li>${i}</li>`).join("") + "</ul>";
+  let pasosHTML = "<ol>" + receta.pasos.map(p => `<li>${p}</li>`).join("") + "</ol>";
+
   const body = `
     <div style="color:#444;line-height:1.6;font-size:.98rem">
-      <p>Pronto podrás ver ingredientes y pasos detallados aquí. De momento mostramos la imagen y opciones de favorito.</p>
+      <h3>Ingredientes</h3>
+      ${ingredientesHTML}
+      <h3>Pasos</h3>
+      ${pasosHTML}
     </div>
   `;
 
   const html = header + image + actions + body;
-
-  // Abrimos y luego ajustamos el estado del botón de favorito
   openModal(html);
+
   const favBtn = modalCard.querySelector("[data-modal-fav]");
   if (favBtn) markFavButtonInModal(favBtn, fav);
 }
+
 
 // ===============================
 // Lógica para tarjetas / favoritos
@@ -401,3 +403,13 @@ window.addEventListener('storage', (e) => {
     renderDropdown();
   }
 });
+let recetaData = [];
+
+fetch("assets/data/recetas.json")
+  .then(res => res.json())
+  .then(data => {
+    recetaData = data;
+  })
+  .catch(err => {
+    console.error("Error al cargar recetas.json:", err);
+  });
