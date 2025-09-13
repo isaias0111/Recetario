@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de Recetas</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <span class="logo-text">Recetas CEUTEC</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="#" class="nav-link active">Inicio</a>
+      <a href="#" class="nav-link">Mis Favoritos</a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Buscador de Recetas</h1>
+      <p>Explora por categorías, guarda tus recetas favoritas y encuentra inspiración para tu próxima comida.</p>
+    </div>
+  </section>
+
+  <!-- Filtros + Buscador -->
+  <section class="filters">
+    <h2>Explorar por categoría</h2>
+    <div class="category-buttons">
+      <button class="category-btn active">Pollo</button>
+      <button class="category-btn">Res</button>
+      <button class="category-btn">Cerdo</button>
+      <button class="category-btn">Pescado</button>
+      <button class="category-btn">Mariscos</button>
+      <button class="category-btn">Pastas</button>
+      <button class="category-btn">Vegetariano</button>
+      <button class="category-btn">Vegano</button>
+      <button class="category-btn">Postres</button>
+      <button class="category-btn">Sopas</button>
+      <button class="category-btn">Ensaladas</button>
+      <button class="category-btn">Desayunos</button>
+    </div>
+    <input type="text" id="searchInput" placeholder="Buscar dentro de la categoría..." class="search-input" />
+  </section>
+
+  <!-- Recetas -->
+  <section class="recipes" id="recipeContainer">
+    <!-- Receta 1 -->
+    <div class="recipe-card">
+      <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limón" class="recipe-image" />
+      <h3 class="recipe-title">Pollo al Limón</h3>
+      <div class="recipe-actions">
+        <button class="view-btn">Ver receta</button>
+        <button class="favorite-btn">☆ Favorito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
+  </footer>
+
+  <script src="assets/js/app.js "></script>
+</body>
+</html>
