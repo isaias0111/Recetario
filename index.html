@@ -1,70 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buscador de Recetas</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-left">
-      <img src="assets/images/logo.png" alt="logo" class="logo" />
-      <span class="logo-text">Recetas CEUTEC</span>
-    </div>
-    <nav class="navbar-right">
-      <a href="#" class="nav-link active">Inicio</a>
-      <a href="#" class="nav-link">Mis Favoritos</a>
-    </nav>
-  </header>
-
-  <!-- Banner -->
-  <section class="banner">
-    <div class="banner-content">
-      <h1>Buscador de Recetas</h1>
-      <p>Explora por categorías, guarda tus recetas favoritas y encuentra inspiración para tu próxima comida.</p>
-    </div>
-  </section>
-
-  <!-- Filtros + Buscador -->
-  <section class="filters">
-    <h2>Explorar por categoría</h2>
-    <div class="category-buttons">
-      <button class="category-btn active">Pollo</button>
-      <button class="category-btn">Res</button>
-      <button class="category-btn">Cerdo</button>
-      <button class="category-btn">Pescado</button>
-      <button class="category-btn">Mariscos</button>
-      <button class="category-btn">Pastas</button>
-      <button class="category-btn">Vegetariano</button>
-      <button class="category-btn">Vegano</button>
-      <button class="category-btn">Postres</button>
-      <button class="category-btn">Sopas</button>
-      <button class="category-btn">Ensaladas</button>
-      <button class="category-btn">Desayunos</button>
-    </div>
-    <input type="text" id="searchInput" placeholder="Buscar dentro de la categoría..." class="search-input" />
-  </section>
-
-  <!-- Recetas -->
-  <section class="recipes" id="recipeContainer">
-    <!-- Receta 1 -->
-    <div class="recipe-card">
-      <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limón" class="recipe-image" />
-      <h3 class="recipe-title">Pollo al Limón</h3>
-      <div class="recipe-actions">
-        <button class="view-btn">Ver receta</button>
-        <button class="favorite-btn">☆ Favorito</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador de Recetas</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <img src="assets/images/logo.png" alt="logo" class="logo" />
+        <span class="logo-text">Recetas CEUTEC</span>
       </div>
-    </div>
-  </section>
+      <nav class="navbar-right">
+        <a href="#" class="nav-link active">Inicio</a>
+        <a href="#" class="nav-link">Mis Favoritos</a>
+      </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer class="footer">
-    © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
-  </footer>
+    <!-- Banner -->
+    <section class="banner">
+      <div class="banner-content">
+        <h1>Buscador de Recetas</h1>
+        <p>
+          Explora por categorías, guarda tus recetas favoritas y encuentra
+          inspiración para tu próxima comida.
+        </p>
+      </div>
+    </section>
 
-  <script src="assets/js/app.js "></script>
-</body>
+    <!-- Filtros + Buscador -->
+    <section class="filters">
+      <h2>Explorar por categoría</h2>
+      <div class="category-buttons">
+        <button class="category-btn active">Pollo</button>
+        <button class="category-btn">Res</button>
+        <button class="category-btn">Cerdo</button>
+        <button class="category-btn">Pescado</button>
+        <button class="category-btn">Mariscos</button>
+        <button class="category-btn">Pastas</button>
+        <button class="category-btn">Vegetariano</button>
+        <button class="category-btn">Vegano</button>
+        <button class="category-btn">Postres</button>
+        <button class="category-btn">Sopas</button>
+        <button class="category-btn">Ensaladas</button>
+        <button class="category-btn">Desayunos</button>
+      </div>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar dentro de la categoría..."
+        class="search-input"
+      />
+    </section>
+
+    <!-- Recetas -->
+    <section class="recipes" id="recipeContainer">
+      <!-- Pollo al Limón -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/Lemon-Chicken-Web-1.jpg"
+          alt="Pollo al Limón"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Pollo al Limón</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Carne Asada -->
+      <div class="recipe-card">
+        <img src="assets/images/carne.jpg" alt="Carne Asada" class="recipe-image" />
+        <h3 class="recipe-title">Carne Asada</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Chuleta de Cerdo -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/chuleta.avif"
+          alt="Chuleta de Cerdo"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Chuleta de Cerdo</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Mariscos Mixtos -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/marisco.jpg"
+          alt="Mariscos Mixtos"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Mariscos Mixtos</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Pescado al Limón -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/pescado.avif"
+          alt="Pescado al Limón"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Pescado al Limón</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Ensalada Vegana -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/ensalada vegana.avif"
+          alt="Ensalada Vegana"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Ensalada Vegana</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+
+      <!-- Pasta con Tomate -->
+      <div class="recipe-card">
+        <img
+          src="assets/images/pastatomate.avif"
+          alt="Pasta con Tomate"
+          class="recipe-image"
+        />
+        <h3 class="recipe-title">Pasta con Tomate</h3>
+        <div class="recipe-actions">
+          <button class="view-btn">Ver receta</button>
+          <button class="favorite-btn">☆ Favorito</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>
