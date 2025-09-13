@@ -1,43 +1,119 @@
+/**
+ * =============================================================
+ *  Recetas CEUTEC — app.js (documentado)
+ *  Funcionalidad:
+ *    - Favoritos persistidos en localStorage
+ *    - Dropdown “Mis Favoritos (n)” anclado al enlace de la barra
+ *    - Modal “Ver receta” con imagen e (opcional) ingredientes/pasos
+ *    - Filtro combinado por Categoria + Busqueda de texto
+ *
+ *  Dependencias de contenido:
+ *    - El HTML debe contener:
+ *        #recipeContainer con tarjetas .recipe-card
+ *        .favorite-btn y .view-btn dentro de cada tarjeta
+ *        un enlace .nav-link cuyo texto contenga “Favoritos”
+ *        botones .category-btn y un input #searchInput
+ *    - (Opcional) assets/data/recetas.json con la forma:
+ *        [
+ *          { "id": "pollo-al-limon",
+ *            "ingredientes": ["...","..."],
+ *            "pasos": ["...","..."]
+ *          },
+ *          ...
+ *        ]
+ *      El id debe corresponder al slug del titulo de la tarjeta.
+ *
+ *  Notas de accesibilidad (A11y):
+ *    - El modal usa aria-modal y role="dialog"
+ *    - Cierre con tecla ESC y click fuera del contenido
+ *    - Botones de favorito usan aria-pressed
+ *
+ *  Autor: Kevin + ChatGPT (2025)
+ * =============================================================
+ */
+
 // ===============================
-//  Recetas CEUTEC - JS standalone
-//  - Favoritos con localStorage
-//  - Dropdown "Mis Favoritos (n)"
-//  - Modal para "Ver receta"
+//  Constantes y utilidades
 // ===============================
 
-// --- Helpers básicos ---
+/** Clave de localStorage para favoritos */
 const LS_KEY = "favoriteRecipes:v1";
+
+/** Atajo: querySelector */
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
+/** Atajo: querySelectorAll (Array real) */
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
+/**
+ * Convierte un texto a un ID seguro de URL (slug).
+ * Elimina acentos, caracteres no alfanumericos y espacios.
+ * @param {string} s
+ * @returns {string}
+ */
 const slug = (s) =>
-  s.toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+/**
+ * Lee favoritos desde localStorage.
+ * @returns {{id:string,title:string,image:string}[]}
+ */
 const getFavorites = () => {
-  try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
-  catch { return []; }
+  try {
+    return JSON.parse(localStorage.getItem(LS_KEY)) || [];
+  } catch {
+    return [];
+  }
 };
-const setFavorites = (arr) => localStorage.setItem(LS_KEY, JSON.stringify(arr));
-const isFavorite = (id) => getFavorites().some(f => f.id === id);
 
-// --- Elementos del DOM según tu HTML ---
+/**
+ * Escribe el arreglo de favoritos en localStorage.
+ * @param {{id:string,title:string,image:string}[]} arr
+ */
+const setFavorites = (arr) => localStorage.setItem(LS_KEY, JSON.stringify(arr));
+
+/**
+ * Indica si un ID esta en favoritos.
+ * @param {string} id
+ * @returns {boolean}
+ */
+const isFavorite = (id) => getFavorites().some((f) => f.id === id);
+
+// ===============================
+//  Referencias al DOM (segun HTML)
+// ===============================
+
+/** Contenedor de tarjetas de receta */
 const recipeContainer = $("#recipeContainer");
+
+/**
+ * Enlace “Mis Favoritos” en la navbar (detectado por texto).
+ * Se posiciona como relativo para anclar dropdown.
+ */
 const favoritesLink = (() => {
-  const link = $$(".nav-link").find(a => /favoritos/i.test(a.textContent));
+  const link = $$(".nav-link").find((a) => /favoritos/i.test(a.textContent));
   if (link) link.style.position = "relative";
   return link;
 })();
 
 // ===============================
-// Dropdown "Mis Favoritos"
+//  Dropdown “Mis Favoritos”
 // ===============================
+
+/** Nodo del dropdown (creado dinamicamente) */
 let dropdown;
 
+/**
+ * Crea el dropdown si no existe y configura su delegacion de eventos.
+ * @returns {HTMLDivElement}
+ */
 function ensureDropdown() {
   if (dropdown) return dropdown;
+
   dropdown = document.createElement("div");
   dropdown.id = "favoritesDropdown";
   Object.assign(dropdown.style, {
@@ -51,10 +127,11 @@ function ensureDropdown() {
     borderRadius: "12px",
     boxShadow: "0 10px 25px rgba(0,0,0,.08)",
     padding: "8px",
-    zIndex: "1000"
+    zIndex: "1000",
   });
   document.body.appendChild(dropdown);
 
+  // Delegacion: quitar individual o vaciar todos
   dropdown.addEventListener("click", (e) => {
     const btnRemove = e.target.closest("[data-remove]");
     if (btnRemove) {
@@ -76,6 +153,9 @@ function ensureDropdown() {
   return dropdown;
 }
 
+/**
+ * Calcula la posicion del dropdown a partir del enlace “Mis Favoritos”.
+ */
 function positionDropdown() {
   if (!favoritesLink || !dropdown) return;
   const r = favoritesLink.getBoundingClientRect();
@@ -83,12 +163,18 @@ function positionDropdown() {
   dropdown.style.top = `${r.bottom + 8}px`;
 }
 
+/**
+ * Muestra/oculta el dropdown. Si showExplicit es boolean, lo respeta;
+ * si es undefined, alterna el estado actual.
+ * @param {boolean} [showExplicit]
+ */
 function toggleDropdown(showExplicit) {
   ensureDropdown();
   positionDropdown();
   const showing = dropdown.style.display === "block";
-  dropdown.style.display = (showExplicit ?? !showing) ? "block" : "none";
+  dropdown.style.display = showExplicit ?? !showing ? "block" : "none";
 
+  // Cierre por click fuera
   if (dropdown.style.display === "block") {
     setTimeout(() => {
       const closeHandler = (ev) => {
@@ -102,12 +188,18 @@ function toggleDropdown(showExplicit) {
   }
 }
 
+/**
+ * Actualiza el texto del enlace con el conteo de favoritos.
+ */
 function updateFavoritesLinkCount() {
   if (!favoritesLink) return;
   const n = getFavorites().length;
   favoritesLink.textContent = `Mis Favoritos (${n})`;
 }
 
+/**
+ * Renderiza el contenido del dropdown (lista de favoritos y boton “Vaciar”).
+ */
 function renderDropdown() {
   ensureDropdown();
   updateFavoritesLinkCount();
@@ -119,18 +211,22 @@ function renderDropdown() {
         <span>Mis favoritos</span>
         <button data-clear disabled style="border:none;background:#FFEBEE;color:#93061E;padding:.35rem .6rem;border-radius:.5rem;font-weight:600;opacity:.6;cursor:not-allowed;">Vaciar</button>
       </div>
-      <div style="padding:.75rem;text-align:center;color:#777;font-size:.95rem;">Aún no has agregado favoritos.</div>
+      <div style="padding:.75rem;text-align:center;color:#777;font-size:.95rem;">Aun no has agregado favoritos.</div>
     `;
     return;
   }
 
-  const items = favs.map(f => `
+  const items = favs
+    .map(
+      (f) => `
     <div style="display:flex;align-items:center;gap:.6rem;padding:.5rem;border-radius:.6rem;">
       <img src="${f.image}" alt="${f.title}" style="width:48px;height:48px;object-fit:cover;border-radius:.5rem;">
       <div style="flex:1;font-size:.95rem;font-weight:500;">${f.title}</div>
       <button data-remove="${f.id}" title="Quitar" style="border:none;background:transparent;cursor:pointer;font-size:1.1rem;line-height:1;color:#93061E;">×</button>
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 
   dropdown.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:.25rem .25rem .5rem;font-weight:600;color:#93061E">
@@ -142,11 +238,18 @@ function renderDropdown() {
 }
 
 // ===============================
-// Modal "Ver receta"
+//  Modal “Ver receta”
 // ===============================
-let modalOverlay;
-let modalCard; // el contenedor interno
 
+/** Overlay del modal (creado dinamicamente) */
+let modalOverlay;
+/** Contenedor de la tarjeta del modal */
+let modalCard;
+
+/**
+ * Crea el modal y configura sus manejadores (si no existe).
+ * @returns {HTMLDivElement}
+ */
 function ensureModal() {
   if (modalOverlay) return modalOverlay;
 
@@ -159,7 +262,7 @@ function ensureModal() {
     alignItems: "center",
     justifyContent: "center",
     padding: "16px",
-    zIndex: "1100"
+    zIndex: "1100",
   });
   modalOverlay.setAttribute("role", "dialog");
   modalOverlay.setAttribute("aria-modal", "true");
@@ -172,7 +275,7 @@ function ensureModal() {
     background: "#fff",
     borderRadius: "16px",
     boxShadow: "0 12px 30px rgba(0,0,0,.2)",
-    padding: "16px"
+    padding: "16px",
   });
 
   modalOverlay.appendChild(modalCard);
@@ -190,7 +293,7 @@ function ensureModal() {
     }
   });
 
-  // Delegación dentro del modal (cerrar / fav toggle)
+  // Delegacion dentro del modal (cerrar / toggle favorito)
   modalCard.addEventListener("click", (e) => {
     const closeBtn = e.target.closest("[data-close-modal]");
     if (closeBtn) {
@@ -207,10 +310,9 @@ function ensureModal() {
       if (already) removeFavorite(id);
       else addFavorite({ id, title, image });
 
-      // Sincronizar UI
+      // Sincronizar UI fuera y dentro del modal
       syncCardsFromStorage();
       renderDropdown();
-      // Refrescar estado del botón dentro del modal
       markFavButtonInModal(favBtn, !already);
     }
   });
@@ -218,23 +320,33 @@ function ensureModal() {
   return modalOverlay;
 }
 
+/**
+ * Abre el modal con el HTML proporcionado y gestiona foco/scroll.
+ * @param {string} html
+ */
 function openModal(html) {
   ensureModal();
   modalCard.innerHTML = html;
   modalOverlay.style.display = "flex";
-  // bloquear scroll de fondo
+  // Bloquear scroll del fondo
   document.body.style.overflow = "hidden";
-  // foco al botón cerrar si existe
+  // Foco al boton cerrar (si existe) por accesibilidad
   const closeBtn = modalCard.querySelector("[data-close-modal]");
   closeBtn?.focus?.();
 }
 
+/** Cierra el modal y restaura el scroll */
 function closeModal() {
   if (!modalOverlay) return;
   modalOverlay.style.display = "none";
-  document.body.style.overflow = ""; // restaurar
+  document.body.style.overflow = "";
 }
 
+/**
+ * Aplica aspecto visual de favorito a un boton dentro del modal.
+ * @param {HTMLButtonElement} btn
+ * @param {boolean} fav
+ */
 function markFavButtonInModal(btn, fav) {
   btn.textContent = fav ? "★ Favorito" : "☆ Favorito";
   btn.setAttribute("aria-pressed", fav ? "true" : "false");
@@ -247,10 +359,16 @@ function markFavButtonInModal(btn, fav) {
   btn.style.fontWeight = fav ? "600" : "400";
 }
 
+/**
+ * Construye y muestra el modal de una receta.
+ * Intenta enriquecer con ingredientes/pasos desde recetas.json (si cargo).
+ * @param {{id:string,title:string,image:string}} info
+ */
 function buildRecipeModal(info) {
-  const receta = recetaData.find(r => r.id === info.id);
+  const receta = recetaData.find((r) => r.id === info.id);
   const fav = isFavorite(info.id);
 
+  // Cabecera del modal
   const header = `
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
       <h2 style="margin:0;font-size:1.4rem;color:#222;">${info.title}</h2>
@@ -259,19 +377,32 @@ function buildRecipeModal(info) {
     </div>
   `;
 
+  // Imagen destacada
   const image = `
     <img src="${info.image}" alt="${info.title}"
       style="width:100%;height:320px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
   `;
 
+  // Acciones (favorito en modal)
   const actions = `
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
       <button data-modal-fav data-id="${info.id}" data-title="${info.title}" data-image="${info.image}"></button>
     </div>
   `;
 
-  let ingredientesHTML = "<ul>" + receta.ingredientes.map(i => `<li>${i}</li>`).join("") + "</ul>";
-  let pasosHTML = "<ol>" + receta.pasos.map(p => `<li>${p}</li>`).join("") + "</ol>";
+  // Contenido dinamico: ingredientes/pasos si existen en recetas.json
+  const ingredientes = Array.isArray(receta?.ingredientes)
+    ? receta.ingredientes
+    : [];
+  const pasos = Array.isArray(receta?.pasos) ? receta.pasos : [];
+
+  const ingredientesHTML = ingredientes.length
+    ? "<ul>" + ingredientes.map((i) => `<li>${i}</li>`).join("") + "</ul>"
+    : "<p style='color:#666'>Ingredientes no disponibles.</p>";
+
+  const pasosHTML = pasos.length
+    ? "<ol>" + pasos.map((p) => `<li>${p}</li>`).join("") + "</ol>"
+    : "<p style='color:#666'>Pasos no disponibles.</p>";
 
   const body = `
     <div style="color:#444;line-height:1.6;font-size:.98rem">
@@ -282,17 +413,24 @@ function buildRecipeModal(info) {
     </div>
   `;
 
+  // Montaje final y apertura
   const html = header + image + actions + body;
   openModal(html);
 
+  // Ajustar estado visual del boton de favorito del modal
   const favBtn = modalCard.querySelector("[data-modal-fav]");
   if (favBtn) markFavButtonInModal(favBtn, fav);
 }
 
+// ===============================
+//  Logica de tarjetas / favoritos
+// ===============================
 
-// ===============================
-// Lógica para tarjetas / favoritos
-// ===============================
+/**
+ * Extrae {id,title,image} de una .recipe-card del grid.
+ * @param {HTMLElement} card
+ * @returns {{id:string,title:string,image:string}}
+ */
 function cardInfoFromElement(card) {
   const titleEl = card.querySelector(".recipe-title");
   const imgEl = card.querySelector("img");
@@ -302,6 +440,11 @@ function cardInfoFromElement(card) {
   return { id, title, image };
 }
 
+/**
+ * Ajusta el estilo y texto de un boton de favorito en tarjeta.
+ * @param {HTMLButtonElement} btn
+ * @param {boolean} fav
+ */
 function markButton(btn, fav) {
   btn.textContent = fav ? "★ Favorito" : "☆ Favorito";
   btn.setAttribute("aria-pressed", fav ? "true" : "false");
@@ -311,11 +454,15 @@ function markButton(btn, fav) {
   btn.style.fontWeight = fav ? "600" : "400";
 }
 
+/**
+ * Sincroniza todos los botones de tarjeta segun localStorage
+ * y actualiza el contador del enlace “Mis Favoritos”.
+ */
 function syncCardsFromStorage() {
   const favs = getFavorites();
-  const ids = new Set(favs.map(f => f.id));
+  const ids = new Set(favs.map((f) => f.id));
 
-  $$(".recipe-card").forEach(card => {
+  $$(".recipe-card").forEach((card) => {
     const btn = card.querySelector(".favorite-btn");
     if (!btn) return;
     const { id } = cardInfoFromElement(card);
@@ -325,36 +472,48 @@ function syncCardsFromStorage() {
   updateFavoritesLinkCount();
 }
 
+/**
+ * Agrega una receta a favoritos, si no existe.
+ * @param {{id:string,title:string,image:string}} recipe
+ */
 function addFavorite(recipe) {
   const favs = getFavorites();
-  if (!favs.some(f => f.id === recipe.id)) {
+  if (!favs.some((f) => f.id === recipe.id)) {
     favs.push(recipe);
     setFavorites(favs);
   }
 }
 
+/**
+ * Elimina una receta de favoritos por ID.
+ * @param {string} id
+ */
 function removeFavorite(id) {
-  const favs = getFavorites().filter(f => f.id !== id);
+  const favs = getFavorites().filter((f) => f.id !== id);
   setFavorites(favs);
 }
 
 // ===============================
-// Eventos globales
+//  Eventos globales e inicializacion
 // ===============================
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Preasignar data-id en cards
-  $$(".recipe-card").forEach(card => {
+  // Preasignar data-id a cada tarjeta (desde su titulo)
+  $$(".recipe-card").forEach((card) => {
     const { id } = cardInfoFromElement(card);
     card.dataset.id = id;
   });
 
+  // Estado inicial de favoritos y dropdown
   syncCardsFromStorage();
   renderDropdown();
 
-  // Click en "☆/★ Favorito"
+  // Delegacion de clicks en el grid:
+  //  - .favorite-btn: alternar favorito
+  //  - .view-btn: abrir modal de receta
   if (recipeContainer) {
     recipeContainer.addEventListener("click", (e) => {
-      // Toggle favorito
+      // Toggle favorito (en tarjeta)
       const btnFav = e.target.closest(".favorite-btn");
       if (btnFav) {
         const card = e.target.closest(".recipe-card");
@@ -369,7 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Ver receta (modal)
+      // Ver receta (abre modal)
       const btnView = e.target.closest(".view-btn");
       if (btnView) {
         const card = e.target.closest(".recipe-card");
@@ -381,7 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Abrir/cerrar dropdown al hacer click en "Mis Favoritos"
+  // Enlace “Mis Favoritos”: abrir dropdown
   if (favoritesLink) {
     favoritesLink.addEventListener("click", (e) => {
       e.preventDefault();
@@ -391,75 +550,100 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Reposicionar dropdown
+  // Reposicionar dropdown en resize/scroll
   window.addEventListener("resize", positionDropdown);
   window.addEventListener("scroll", positionDropdown);
 });
-// ===============================
-// Filtrado por categoría
-// ===============================
-const categoryButtons = $$(".category-btn");
-let selectedCategory = "Todos"; // valor inicial
 
-categoryButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const category = btn.textContent.trim();
-
-    // Si ya está seleccionada, desactiva el filtro
-    if (selectedCategory === category) {
-      selectedCategory = "Todos"; // quitar filtro
-      btn.classList.remove("active");
-    } else {
-      selectedCategory = category;
-      categoryButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    }
-
-    applyFilters(); // aplicar filtros combinados
-  });
-});
-
-// ===============================
-// Filtro por búsqueda
-// ===============================
-const searchInput = $("#searchInput");
-
-if (searchInput) {
-  searchInput.addEventListener("input", () => {
-    applyFilters(); // aplicar filtros combinados
-  });
-}
-
-// ===============================
-// Función combinada de filtrado
-// ===============================
-function applyFilters() {
-  const search = (searchInput?.value || "").toLowerCase();
-
-  $$(".recipe-card").forEach(card => {
-    const title = card.querySelector(".recipe-title")?.textContent.toLowerCase();
-    const category = card.dataset.category;
-    const matchesCategory = selectedCategory === "Todos" || selectedCategory === category;
-    const matchesSearch = title?.includes(search);
-
-    card.style.display = matchesCategory && matchesSearch ? "" : "none";
-  });
-}
-
-// Sincronizar entre pestañas/ventanas
-window.addEventListener('storage', (e) => {
+// Mantener favoritos sincronizados entre pestanas/ventanas
+window.addEventListener("storage", (e) => {
   if (e.key === LS_KEY) {
     syncCardsFromStorage();
     renderDropdown();
   }
 });
+
+// ===============================
+//  Filtros: Categoria + Busqueda
+// ===============================
+
+/** Botones de categoria definidos en el HTML */
+const categoryButtons = $$(".category-btn");
+/** Categoria seleccionada (o “Todos” si no hay filtro activo) */
+let selectedCategory = "Todos";
+
+/**
+ * Manejo de seleccion de categoria.
+ *  - Clic en la misma categoria: desactiva filtro
+ *  - Clic en otra categoria: activa esa y quita las demas
+ */
+categoryButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const category = btn.textContent.trim();
+
+    if (selectedCategory === category) {
+      // Si re-clic en la misma, quitar filtro
+      selectedCategory = "Todos";
+      btn.classList.remove("active");
+    } else {
+      selectedCategory = category;
+      categoryButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    applyFilters();
+  });
+});
+
+/** Input de busqueda por texto */
+const searchInput = $("#searchInput");
+if (searchInput) {
+  // Filtra en tiempo real al escribir
+  searchInput.addEventListener("input", () => {
+    applyFilters();
+  });
+}
+
+/**
+ * Aplica el filtro combinado:
+ *   - Categoria (selectedCategory vs data-category)
+ *   - Busqueda de texto en el titulo
+ */
+function applyFilters() {
+  const search = (searchInput?.value || "").toLowerCase();
+
+  $$(".recipe-card").forEach((card) => {
+    const title =
+      card.querySelector(".recipe-title")?.textContent.toLowerCase() || "";
+    const category = card.dataset.category || "";
+    const matchesCategory =
+      selectedCategory === "Todos" || selectedCategory === category;
+    const matchesSearch = title.includes(search);
+
+    card.style.display = matchesCategory && matchesSearch ? "" : "none";
+  });
+}
+
+// ===============================
+//  Datos externos de receta (opcional)
+//  Carga asincrona de assets/data/recetas.json
+// ===============================
+
+/**
+ * Contiene el catalogo enriquecido (ingredientes/pasos) si existe recetas.json.
+ * @type {{id:string, ingredientes?:string[], pasos?:string[]}[]}
+ */
 let recetaData = [];
 
+// Carga opcional: si el archivo no existe o falla, simplemente se omite el enriquecimiento.
 fetch("assets/data/recetas.json")
-  .then(res => res.json())
-  .then(data => {
-    recetaData = data;
+  .then((res) => res.json())
+  .then((data) => {
+    recetaData = Array.isArray(data) ? data : [];
   })
-  .catch(err => {
-    console.error("Error al cargar recetas.json:", err);
+  .catch((err) => {
+    console.warn(
+      "No se pudo cargar assets/data/recetas.json (modal mostrara solo imagen/titulo). Detalle:",
+      err
+    );
   });

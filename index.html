@@ -1,41 +1,95 @@
+<!--
+  index.html — Recetas CEUTEC
+
+  Proposito:
+  Pagina principal del “Buscador de Recetas”. Permite explorar por categorias,
+  buscar por texto y marcar recetas como favoritas (logica en assets/js/app.js).
+
+  Estructura:
+    - <header>.navbar: Logo + navegacion (Inicio, Mis Favoritos).
+    - <main>.container:
+        - <section>.banner: Titulo y descripcion.
+        - <section>.filters: Botones de categoria + input de busqueda.
+        - <section>#recipeContainer: Grid de tarjetas (.recipe-card).
+    - <footer>: Creditos.
+
+  Convenciones:
+    - Cada .recipe-card incluye data-category="..." para filtrado.
+    - Los elementos interactivos tienen clases predecibles:
+      .view-btn (abrir modal de receta), .favorite-btn (toggle favorito).
+    - El script app.js hace:
+      - Filtrado por categoria / texto
+      - Favoritos con localStorage
+      - Dropdown “Mis Favoritos (n)”
+      - Modal “Ver receta”
+
+  Accesibilidad (A11y):
+    - Las imagenes tienen alt descriptivo.
+    - El campo de busqueda usa placeholder; si requieres mayor A11y,
+      considera anadir un <label for="searchInput"> (oculto con CSS).
+
+  Dependencias:
+    - Estilos: assets/css/styles.css
+    - Logica: assets/js/app.js
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <!-- Hace responsivo el layout en moviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buscador de Recetas</title>
+
+  <!-- CSS principal del sitio -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <!-- Header -->
+  <!-- ===================================== -->
+  <!-- Header / Navbar                       -->
+  <!-- Contiene branding y enlaces de nav.   -->
+  <!-- ===================================== -->
   <header class="navbar">
     <div class="navbar-left">
+      <!-- Logo institucional -->
       <img src="assets/images/logo.png" alt="logo" class="logo" />
       <span class="logo-text">Recetas CEUTEC</span>
     </div>
+
+    <!-- Enlaces de navegacion.
+         Nota: el script detecta “Mis Favoritos” por su texto. -->
     <nav class="navbar-right">
       <a href="#" class="nav-link active">Inicio</a>
       <a href="#" class="nav-link">Mis Favoritos</a>
     </nav>
   </header>
 
-  <!-- Contenedor principal -->
+  <!-- ===================================== -->
+  <!-- Contenido principal                   -->
+  <!-- Agrupa banner, filtros y el grid.     -->
+  <!-- ===================================== -->
   <main class="container">
 
-    <!-- Banner -->
+    <!-- Banner informativo / hero -->
     <section class="banner">
       <div class="banner-content">
         <h1>Buscador de Recetas</h1>
         <p>
-          Explora por categorías, guarda tus recetas favoritas y encuentra
-          inspiración para tu próxima comida.
+          Explora por categorias, guarda tus recetas favoritas y encuentra
+          inspiracion para tu proxima comida.
         </p>
       </div>
     </section>
 
-    <!-- Filtros + Buscador -->
+    <!-- ===================================== -->
+    <!-- Filtros de categoria + buscador       -->
+    <!-- Los botones cambian categoria activa. -->
+    <!-- El input filtra por texto.            -->
+    <!-- ===================================== -->
     <section class="filters">
-      <h2>Explorar por categoría</h2>
+      <h2>Explorar por categoria</h2>
+
+      <!-- Lista de categorias disponibles.
+           Sugerencia: mantener la ortografia EXACTA para coherencia con data-category. -->
       <div class="category-buttons">
         <button class="category-btn active">Pollo</button>
         <button class="category-btn">Res</button>
@@ -49,24 +103,40 @@
         <button class="category-btn">Sopas</button>
         <button class="category-btn">Desayunos</button>
       </div>
+
+      <!-- Buscador por texto dentro de la categoria activa.
+           Para maxima A11y, puedes anadir un <label for="searchInput">Buscar</label> con clase .sr-only -->
       <input
         type="text"
         id="searchInput"
-        placeholder="Buscar dentro de la categoría..."
+        placeholder="Buscar dentro de la categoria..."
         class="search-input"
       />
     </section>
 
-    <!-- Recetas -->
+    <!-- ===================================== -->
+    <!-- Grid de recetas                       -->
+    <!-- Cada .recipe-card representa una receta.
+         data-category permite el filtrado por JS. -->
+    <!-- ===================================== -->
     <section class="recipes" id="recipeContainer">
-      <!-- Tarjetas de recetas -->
-      <!-- Cada tarjeta debe tener el atributo data-category -->
+      <!-- Patron de tarjeta:
+           .recipe-card[data-category]
+             ├─ <img.recipe-image alt="...">
+             ├─ <h3.recipe-title>Nombre</h3>
+             └─ .recipe-actions
+                ├─ <button.view-btn>Ver receta</button>
+                └─ <button.favorite-btn>☆ Favorito</button>
+      -->
+
       <!-- Receta 1 -->
       <div class="recipe-card" data-category="Pollo">
-        <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limón" class="recipe-image" />
-        <h3 class="recipe-title">Pollo al Limón</h3>
+        <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limon" class="recipe-image" />
+        <h3 class="recipe-title">Pollo al Limon</h3>
         <div class="recipe-actions">
+          <!-- Abre modal con el detalle -->
           <button class="view-btn">Ver receta</button>
+          <!-- Alterna en localStorage y actualiza UI -->
           <button class="favorite-btn">☆ Favorito</button>
         </div>
       </div>
@@ -103,8 +173,8 @@
 
       <!-- Receta 5 -->
       <div class="recipe-card" data-category="Pescado">
-        <img src="assets/images/pescado.avif" alt="Pescado al Limón" class="recipe-image" />
-        <h3 class="recipe-title">Pescado al Limón</h3>
+        <img src="assets/images/pescado.avif" alt="Pescado al Limon" class="recipe-image" />
+        <h3 class="recipe-title">Pescado al Limon</h3>
         <div class="recipe-actions">
           <button class="view-btn">Ver receta</button>
           <button class="favorite-btn">☆ Favorito</button>
@@ -173,7 +243,7 @@
 
       <!-- Receta 12 -->
       <div class="recipe-card" data-category="Vegano">
-        <img src="assets/images/bowl.jpg" alt="Bowl Vegano" class="recipe-image" />
+        <img src="assets/images/bolw.jpg" alt="Bowl Vegano" class="recipe-image" />
         <h3 class="recipe-title">Bowl Vegano</h3>
         <div class="recipe-actions">
           <button class="view-btn">Ver receta</button>
@@ -183,12 +253,15 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ===================================== -->
+  <!-- Footer / Creditos                     -->
+  <!-- ===================================== -->
   <footer class="footer">
     © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
   </footer>
 
-  <!-- JavaScript -->
+  <!-- Carga del JS (al final para no bloquear el render).
+       app.js inicializa filtros, favoritos, dropdown y modal. -->
   <script src="assets/js/app.js"></script>
 </body>
 </html>
