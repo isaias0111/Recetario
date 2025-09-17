@@ -13,7 +13,7 @@
  *        .favorite-btn y .view-btn dentro de cada tarjeta
  *        un enlace .nav-link cuyo texto contenga “Favoritos”
  *        botones .category-btn y un input #searchInput
- *    - (Opcional) assets/data/recetas.json con la forma:
+ *    - assets/data/recetas.json con la forma:
  *        [
  *          { "id": "pollo-al-limon",
  *            "ingredientes": ["...","..."],
@@ -28,7 +28,7 @@
  *    - Cierre con tecla ESC y click fuera del contenido
  *    - Botones de favorito usan aria-pressed
  *
- *  Autor: Kevin + ChatGPT (2025)
+ *  Autor: Kevin
  * =============================================================
  */
 

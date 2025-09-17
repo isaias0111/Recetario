@@ -34,93 +34,92 @@
 -->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <!-- Hace responsivo el layout en moviles -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buscador de Recetas</title>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Hace responsivo el layout en moviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador de Recetas</title>
 
-  <!-- CSS principal del sitio -->
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
-  <!-- ===================================== -->
-  <!-- Header / Navbar                       -->
-  <!-- Contiene branding y enlaces de nav.   -->
-  <!-- ===================================== -->
-  <header class="navbar">
-    <div class="navbar-left">
-      <!-- Logo institucional -->
-      <img src="assets/images/logo.png" alt="logo" class="logo" />
-      <span class="logo-text">Recetas CEUTEC</span>
-    </div>
+    <!-- CSS principal del sitio -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- ===================================== -->
+    <!-- Header / Navbar                       -->
+    <!-- Contiene branding y enlaces de nav.   -->
+    <!-- ===================================== -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <!-- Logo institucional -->
+        <img src="assets/images/logo.png" alt="logo" class="logo" />
+        <span class="logo-text">Recetas CEUTEC</span>
+      </div>
 
-    <!-- Enlaces de navegacion.
+      <!-- Enlaces de navegacion.
          Nota: el script detecta “Mis Favoritos” por su texto. -->
-    <nav class="navbar-right">
-      <a href="#" class="nav-link active">Inicio</a>
-      <a href="#" class="nav-link">Mis Favoritos</a>
-    </nav>
-  </header>
-
-  <!-- ===================================== -->
-  <!-- Contenido principal                   -->
-  <!-- Agrupa banner, filtros y el grid.     -->
-  <!-- ===================================== -->
-  <main class="container">
-
-    <!-- Banner informativo / hero -->
-    <section class="banner">
-      <div class="banner-content">
-        <h1>Buscador de Recetas</h1>
-        <p>
-          Explora por categorias, guarda tus recetas favoritas y encuentra
-          inspiracion para tu proxima comida.
-        </p>
-      </div>
-    </section>
+      <nav class="navbar-right">
+        <a href="#" class="nav-link active">Inicio</a>
+        <a href="#" class="nav-link">Mis Favoritos</a>
+      </nav>
+    </header>
 
     <!-- ===================================== -->
-    <!-- Filtros de categoria + buscador       -->
-    <!-- Los botones cambian categoria activa. -->
-    <!-- El input filtra por texto.            -->
+    <!-- Contenido principal                   -->
+    <!-- Agrupa banner, filtros y el grid.     -->
     <!-- ===================================== -->
-    <section class="filters">
-      <h2>Explorar por categoria</h2>
+    <main class="container">
+      <!-- Banner informativo / hero -->
+      <section class="banner">
+        <div class="banner-content">
+          <h1>Buscador de Recetas</h1>
+          <p>
+            Explora por categorias, guarda tus recetas favoritas y encuentra
+            inspiracion para tu proxima comida.
+          </p>
+        </div>
+      </section>
 
-      <!-- Lista de categorias disponibles.
+      <!-- ===================================== -->
+      <!-- Filtros de categoria + buscador       -->
+      <!-- Los botones cambian categoria activa. -->
+      <!-- El input filtra por texto.            -->
+      <!-- ===================================== -->
+      <section class="filters">
+        <h2>Explorar por categoria</h2>
+
+        <!-- Lista de categorias disponibles.
            Sugerencia: mantener la ortografia EXACTA para coherencia con data-category. -->
-      <div class="category-buttons">
-        <button class="category-btn active">Pollo</button>
-        <button class="category-btn">Res</button>
-        <button class="category-btn">Cerdo</button>
-        <button class="category-btn">Pescado</button>
-        <button class="category-btn">Mariscos</button>
-        <button class="category-btn">Pastas</button>
-        <button class="category-btn">Vegano</button>
-        <button class="category-btn">Ensaladas</button>
-        <button class="category-btn">Postres</button>
-        <button class="category-btn">Sopas</button>
-        <button class="category-btn">Desayunos</button>
-      </div>
+        <div class="category-buttons">
+          <button class="category-btn active">Pollo</button>
+          <button class="category-btn">Res</button>
+          <button class="category-btn">Cerdo</button>
+          <button class="category-btn">Pescado</button>
+          <button class="category-btn">Mariscos</button>
+          <button class="category-btn">Pastas</button>
+          <button class="category-btn">Vegano</button>
+          <button class="category-btn">Ensaladas</button>
+          <button class="category-btn">Postres</button>
+          <button class="category-btn">Sopas</button>
+          <button class="category-btn">Desayunos</button>
+        </div>
 
-      <!-- Buscador por texto dentro de la categoria activa.
+        <!-- Buscador por texto dentro de la categoria activa.
            Para maxima A11y, puedes anadir un <label for="searchInput">Buscar</label> con clase .sr-only -->
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Buscar dentro de la categoria..."
-        class="search-input"
-      />
-    </section>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar dentro de la categoria..."
+          class="search-input"
+        />
+      </section>
 
-    <!-- ===================================== -->
-    <!-- Grid de recetas                       -->
-    <!-- Cada .recipe-card representa una receta.
+      <!-- ===================================== -->
+      <!-- Grid de recetas                       -->
+      <!-- Cada .recipe-card representa una receta.
          data-category permite el filtrado por JS. -->
-    <!-- ===================================== -->
-    <section class="recipes" id="recipeContainer">
-      <!-- Patron de tarjeta:
+      <!-- ===================================== -->
+      <section class="recipes" id="recipeContainer">
+        <!-- Patron de tarjeta:
            .recipe-card[data-category]
              ├─ <img.recipe-image alt="...">
              ├─ <h3.recipe-title>Nombre</h3>
@@ -129,139 +128,187 @@
                 └─ <button.favorite-btn>☆ Favorito</button>
       -->
 
-      <!-- Receta 1 -->
-      <div class="recipe-card" data-category="Pollo">
-        <img src="assets/images/Lemon-Chicken-Web-1.jpg" alt="Pollo al Limon" class="recipe-image" />
-        <h3 class="recipe-title">Pollo al Limon</h3>
-        <div class="recipe-actions">
-          <!-- Abre modal con el detalle -->
-          <button class="view-btn">Ver receta</button>
-          <!-- Alterna en localStorage y actualiza UI -->
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 1 -->
+        <div class="recipe-card" data-category="Pollo">
+          <img
+            src="assets/images/Lemon-Chicken-Web-1.jpg"
+            alt="Pollo al Limon"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Pollo al Limon</h3>
+          <div class="recipe-actions">
+            <!-- Abre modal con el detalle -->
+            <button class="view-btn">Ver receta</button>
+            <!-- Alterna en localStorage y actualiza UI -->
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 2 -->
-      <div class="recipe-card" data-category="Res">
-        <img src="assets/images/carne.jpg" alt="Carne Asada" class="recipe-image" />
-        <h3 class="recipe-title">Carne Asada</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 2 -->
+        <div class="recipe-card" data-category="Res">
+          <img
+            src="assets/images/carne.jpg"
+            alt="Carne Asada"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Carne Asada</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 3 -->
-      <div class="recipe-card" data-category="Cerdo">
-        <img src="assets/images/chuleta.avif" alt="Chuleta de Cerdo" class="recipe-image" />
-        <h3 class="recipe-title">Chuleta de Cerdo</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 3 -->
+        <div class="recipe-card" data-category="Cerdo">
+          <img
+            src="assets/images/chuleta.avif"
+            alt="Chuleta de Cerdo"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Chuleta de Cerdo</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 4 -->
-      <div class="recipe-card" data-category="Mariscos">
-        <img src="assets/images/marisco.jpg" alt="Mariscos Mixtos" class="recipe-image" />
-        <h3 class="recipe-title">Mariscos Mixtos</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 4 -->
+        <div class="recipe-card" data-category="Mariscos">
+          <img
+            src="assets/images/marisco.jpg"
+            alt="Mariscos Mixtos"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Mariscos Mixtos</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 5 -->
-      <div class="recipe-card" data-category="Pescado">
-        <img src="assets/images/pescado.avif" alt="Pescado al Limon" class="recipe-image" />
-        <h3 class="recipe-title">Pescado al Limon</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 5 -->
+        <div class="recipe-card" data-category="Pescado">
+          <img
+            src="assets/images/pescado.avif"
+            alt="Pescado al Limon"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Pescado al Limon</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 6 -->
-      <div class="recipe-card" data-category="Vegano">
-        <img src="assets/images/ensalada vegana.avif" alt="Ensalada Vegana" class="recipe-image" />
-        <h3 class="recipe-title">Ensalada Vegana</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 6 -->
+        <div class="recipe-card" data-category="Vegano">
+          <img
+            src="assets/images/ensalada vegana.avif"
+            alt="Ensalada Vegana"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Ensalada Vegana</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 7 -->
-      <div class="recipe-card" data-category="Pastas">
-        <img src="assets/images/pastatomate.avif" alt="Pasta con Tomate" class="recipe-image" />
-        <h3 class="recipe-title">Pasta con Tomate</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 7 -->
+        <div class="recipe-card" data-category="Pastas">
+          <img
+            src="assets/images/pastatomate.avif"
+            alt="Pasta con Tomate"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Pasta con Tomate</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 8 -->
-      <div class="recipe-card" data-category="Postres">
-        <img src="assets/images/pastel.avif" alt="Pastel de Frutas" class="recipe-image" />
-        <h3 class="recipe-title">Pastel de Frutas</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 8 -->
+        <div class="recipe-card" data-category="Postres">
+          <img
+            src="assets/images/pastel.avif"
+            alt="Pastel de Frutas"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Pastel de Frutas</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 9 -->
-      <div class="recipe-card" data-category="Sopas">
-        <img src="assets/images/sopa.jpg" alt="Sopa de Calabaza" class="recipe-image" />
-        <h3 class="recipe-title">Sopa de Calabaza</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 9 -->
+        <div class="recipe-card" data-category="Sopas">
+          <img
+            src="assets/images/sopa.jpg"
+            alt="Sopa de Calabaza"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Sopa de Calabaza</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 10 -->
-      <div class="recipe-card" data-category="Ensaladas">
-        <img src="assets/images/ensalada.avif" alt="Ensalada Fresca" class="recipe-image" />
-        <h3 class="recipe-title">Ensalada Fresca</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 10 -->
+        <div class="recipe-card" data-category="Ensaladas">
+          <img
+            src="assets/images/ensalada.avif"
+            alt="Ensalada Fresca"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Ensalada Fresca</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 11 -->
-      <div class="recipe-card" data-category="Desayunos">
-        <img src="assets/images/desayuno.avif" alt="Desayuno Completo" class="recipe-image" />
-        <h3 class="recipe-title">Desayuno Completo</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 11 -->
+        <div class="recipe-card" data-category="Desayunos">
+          <img
+            src="assets/images/desayuno.avif"
+            alt="Desayuno Completo"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Desayuno Completo</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Receta 12 -->
-      <div class="recipe-card" data-category="Vegano">
-        <img src="assets/images/bolw.jpg" alt="Bowl Vegano" class="recipe-image" />
-        <h3 class="recipe-title">Bowl Vegano</h3>
-        <div class="recipe-actions">
-          <button class="view-btn">Ver receta</button>
-          <button class="favorite-btn">☆ Favorito</button>
+        <!-- Receta 12 -->
+        <div class="recipe-card" data-category="Vegano">
+          <img
+            src="assets/images/bolw.jpg"
+            alt="Bowl Vegano"
+            class="recipe-image"
+          />
+          <h3 class="recipe-title">Bowl Vegano</h3>
+          <div class="recipe-actions">
+            <button class="view-btn">Ver receta</button>
+            <button class="favorite-btn">☆ Favorito</button>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <!-- ===================================== -->
-  <!-- Footer / Creditos                     -->
-  <!-- ===================================== -->
-  <footer class="footer">
-    © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
-  </footer>
+    <!-- ===================================== -->
+    <!-- Footer / Creditos                     -->
+    <!-- ===================================== -->
+    <footer class="footer">
+      © Grupo 5, Desarrollo de Aplicaciones Web CEUTEC.
+    </footer>
 
-  <!-- Carga del JS (al final para no bloquear el render).
+    <!-- Carga del JS (al final para no bloquear el render).
        app.js inicializa filtros, favoritos, dropdown y modal. -->
-  <script src="assets/js/app.js"></script>
-</body>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>

@@ -26,16 +26,16 @@
 /* ------------------------------
    Fuente: Poppins (Google Fonts)
 ------------------------------ */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 /* ------------------------------
    Reset basico + tipografia
 ------------------------------ */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f9fafb; /* Fondo general suave */
-  color: #333;               /* Texto principal */
+  color: #333; /* Texto principal */
 }
 
 /* Contenedor utilitario para limitar el ancho de contenidos sueltos */
@@ -57,7 +57,7 @@ body {
   position: sticky;
   top: 0;
   padding: 1rem;
-  z-index: 1000;       /* Sobre el resto del contenido */
+  z-index: 1000; /* Sobre el resto del contenido */
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
@@ -80,7 +80,7 @@ body {
 .logo-text {
   font-weight: bold;
   font-size: 1.1rem;
-  color: #93061E; /* Color institucional */
+  color: #93061e; /* Color institucional */
 }
 
 /* Enlaces del lado derecho */
@@ -93,12 +93,12 @@ body {
 
 /* Hover en enlaces de navbar */
 .navbar-right .nav-link:hover {
-  color: #FF5F72;
+  color: #ff5f72;
 }
 
 /* Enlace activo (pagina actual) */
 .navbar-right .nav-link.active {
-  color: #FF5F72;
+  color: #ff5f72;
   font-weight: bold;
 }
 
@@ -113,7 +113,7 @@ body {
 
 /* Tarjeta con degradado y sombra suave */
 .banner-content {
-  background: linear-gradient(to right, #DF1B3B, #E04332);
+  background: linear-gradient(to right, #df1b3b, #e04332);
   border-radius: 1rem;
   padding: 1.5rem;
   color: white;
@@ -145,7 +145,7 @@ body {
 .filters h2 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  color: #93061E;
+  color: #93061e;
 }
 
 /* Contenedor de botones de categorias */
@@ -164,15 +164,15 @@ body {
   background: white;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Estado activo/hover de categoria */
 .category-btn.active,
 .category-btn:hover {
-  background: #FFEBEE;
-  border-color: #DF1B3B;
-  color: #93061E;
+  background: #ffebee;
+  border-color: #df1b3b;
+  color: #93061e;
 }
 
 /* Campo de busqueda */
@@ -183,7 +183,7 @@ body {
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Enfoque accesible (focus ring) */
@@ -205,8 +205,8 @@ body {
 
 /* Tarjeta de receta (ficha) */
 .recipe-card {
-  width: 300px;       /* Tamano fijo en desktop para cuadricula regular */
-  flex-shrink: 0;     /* No se reduce por falta de espacio */
+  width: 300px; /* Tamano fijo en desktop para cuadricula regular */
+  flex-shrink: 0; /* No se reduce por falta de espacio */
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background: #fff;
@@ -249,19 +249,19 @@ body {
 
 /* Boton “Ver receta” (primario) */
 .view-btn {
-  background: #93061E;
+  background: #93061e;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.3s;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Hover del boton primario */
 .view-btn:hover {
-  background: #DF1B3B;
+  background: #df1b3b;
 }
 
 /* Boton “Favorito” (secundario) */
@@ -272,7 +272,7 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Hover del boton secundario */
@@ -305,7 +305,7 @@ body {
   }
 
   .recipe-card {
-    width: 100%;   /* Ocupa todo el ancho disponible */
+    width: 100%; /* Ocupa todo el ancho disponible */
   }
 
   .recipe-image {
@@ -372,7 +372,7 @@ body {
   }
 
   .category-buttons {
-    flex-direction: column;  /* Botones en columna */
+    flex-direction: column; /* Botones en columna */
     align-items: stretch;
   }
 
