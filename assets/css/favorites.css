@@ -1,0 +1,56 @@
+/* Dropdown de "Mis Favoritos" (header) */
+.fav-anchor{ position:relative; display:inline-block; }
+
+/* badge con conteo */
+.fav-badge{
+  position:absolute; top:-6px; right:-10px;
+  background: var(--brand-prim); color:#fff;
+  font-size:.75rem; line-height:18px; height:18px;
+  padding:0 6px; border-radius:9999px;
+}
+
+/* contenedor */
+.fav-dropdown{
+  position:absolute; right:0; top:calc(100% + 10px);
+  width:360px; max-height:70vh; overflow:auto;
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  border-radius:14px; box-shadow:0 12px 32px rgba(0,0,0,.18);
+  padding:10px; z-index:2000;
+}
+.fav-dropdown.hidden{ display:none; }
+
+/* item */
+.fav-item{
+  display:flex; align-items:center; gap:10px;
+  padding:10px; border-radius:12px;
+  color:#111; background:transparent;
+}
+.fav-item:hover{ background:#f8f8f8; }
+
+.fav-item img, .fav-img-ph{
+  width:42px; height:42px; border-radius:10px; object-fit:cover; background:#eee;
+  flex:0 0 42px; box-shadow:0 1px 2px rgba(0,0,0,.06) inset;
+}
+
+/* título legible y truncado a 2 líneas */
+.fav-item-title{
+  flex:1; font-size:.95rem; font-weight:600; color:#111; line-height:1.2;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+/* acciones */
+.fav-item-actions{ display:flex; gap:8px; }
+.fav-btn{
+  border-radius:10px; padding:6px 10px; font-size:.85rem; cursor:pointer;
+  border:1px solid #ddd; background:#fff; color:#111;
+  transition:transform .1s ease, background .15s ease, border-color .15s ease;
+}
+.fav-btn:hover{ transform:translateY(-1px); background:#f6f6f6; }
+
+.fav-btn--primary{ background: var(--brand-prim); color:#fff; border:0; }
+.fav-btn--primary:hover{ background:#a31536; }
+
+.fav-btn--danger{ border-color:#e2a6b6; color: var(--brand-prim); background:#fff; }
+.fav-btn--danger:hover{ background:#ffe9ef; border-color:#d57a94; }
+
+.fav-empty{ color:#666; font-size:.95rem; padding:8px 6px; text-align:center; }

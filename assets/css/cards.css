@@ -1,0 +1,61 @@
+/* Grid y tarjetas */
+.recipes{
+  /* Deja de usar flex; pasamos a Grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Tarjeta */
+.recipe-card{
+  /* En grid, la tarjeta ocupa su columna; no fijes ancho */
+  width: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  background:#fff;
+  padding:1rem;
+  display:flex;
+  flex-direction:column;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.recipe-card:hover{
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  transform: translateY(-4px);
+}
+
+/* Imagen */
+.recipe-image{
+  width:100%; height:150px; object-fit:cover;
+  border-radius:.5rem; margin-bottom:1rem; display:block;
+}
+
+/* Título */
+.recipe-title{
+  margin:0 0 .5rem; font-size:1.1rem; font-weight:600; color:#333;
+}
+
+/* Acciones */
+.recipe-actions{ display:flex; justify-content:space-between; align-items:center; }
+
+/* Botón primario */
+.view-btn{
+  background: var(--brand-prim); color:#fff;
+  padding:.5rem 1rem; border:0; border-radius:.5rem;
+  cursor:pointer; transition: background .3s;
+}
+.view-btn:hover{ background: var(--brand-prim-2); }
+
+/* Botón favorito */
+.favorite-btn{
+  background:#fff; border:1px solid #ccc; padding:.5rem 1rem; border-radius:.5rem;
+  cursor:pointer; transition: all .3s;
+}
+.favorite-btn:hover{ background:#f8f8f8; border-color:#999; }
+
+/* Estado favorito (lo marca tu JS con .is-fav) */
+.favorite-btn.is-fav{
+  border-color: var(--brand-prim);
+  background: rgba(176,23,59,.08);
+  color: var(--brand-prim);
+  font-weight:600;
+}

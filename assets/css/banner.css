@@ -1,0 +1,17 @@
+/* Sección banner: ocupa todo el ancho del .container */
+.banner{
+  /* El ancho ya lo controla .container, no necesitamos max-width ni centrar */
+  margin: 1.5rem 0;   /* mismo margen vertical que el resto de secciones */
+  padding: 0;         /* <-- clave: sin padding aquí para no encoger el banner */
+}
+
+.banner-content{
+  background: linear-gradient(90deg, var(--brand-prim), var(--brand-prim-2));
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;     /* padding interno real del card */
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  transition: transform .3s;
+}
+.banner-content:hover{ transform: scale(1.01); }
+.banner-content h1{ margin:0; font-size:2.5rem; }

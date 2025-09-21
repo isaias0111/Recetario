@@ -1,0 +1,23 @@
+/* Navbar alineada al footer (oscura) */
+.navbar{
+  position: sticky; top:0; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  padding:12px 24px;
+  background: var(--bg-deep);
+  color: var(--text-light);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.navbar-left{ display:flex; align-items:center; gap:10px; }
+.logo{ width:28px; height:28px; object-fit:contain; border-radius:8px; }
+.logo-text{ color:#fff; font-weight:700; }
+
+.navbar-right{ display:flex; align-items:center; gap:8px; }
+.nav-link{
+  color: var(--text-light); text-decoration:none; opacity:.9;
+  padding:.5rem .9rem; border-radius:9999px;
+  transition: background-color .15s ease, opacity .15s ease;
+}
+.nav-link:hover{ background:rgba(255,255,255,.10); opacity:1; }
+.nav-link.active{ background: var(--brand-prim); color:#fff; opacity:1; }
+
+.navbar.navbar--raised{ box-shadow:0 6px 18px rgba(0,0,0,.18); }
