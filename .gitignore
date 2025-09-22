@@ -1,68 +1,32 @@
-# ---- Sistema operativo
-.DS_Store
-Thumbs.db
-ehthumbs.db
-desktop.ini
-Icon?
-._*
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+[Ll]og/
 
-# ---- Editores / IDE
 .vscode/
 .idea/
-*.code-workspace
-.history/
-*.swp
-*.swo
+*.sln.iml
 
-# ---- Dependencias / gestores
-node_modules/
-bower_components/
+packages/
+*.nupkg
+*.snupkg
 
-# ---- Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-*.log
+_ReSharper*/
+*.DotSettings.user
 
-# ---- Entornos / credenciales
-.env
-.env.*
-!.env.example
+.DS_Store
+Thumbs.db
+desktop.ini
 
-# ---- Builds y cachés (si usas bundlers)
-dist/
-build/
-public/build/
-.tmp/
-.temp/
-.cache/
-.parcel-cache/
-.sass-cache/
-coverage/
-
-# ---- Herramientas de despliegue
-.vercel/
-.netlify/
-firebase-debug.log
-.firebaserc
-
-# ---- Archivos temporales y de sistema
-*.pid
-*.seed
-*.tgz
-*.zip
-*.tar
-*.tar.gz
-
-# ---- Exportaciones de diseño (mantén los originales fuera del repo si no los quieres)
-# Quita estas líneas si deseas versionar tus fuentes de diseño
-*.psd
-*.ai
-*.sketch
-*.xcf
-
-# ---- Mantener carpetas vacías (usa un marcador)
-# Crea un archivo .keep para conservar directorios vacíos
-!.keep
-!.gitkeep
+.gradle/
+*.apk
+*.ap_
+*.aab
+*.keystore
+*.ipa
+*.dSYM
