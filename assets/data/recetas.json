@@ -199,5 +199,37 @@
       "Servir en bowl con vegetales.",
       "Agregar salsa tahini al gusto."
     ]
+  },
+  {
+    "id": "tacos-al-pastor",
+    "title": "Tacos al Pastor",
+    "image": "assets/images/tacos.jpg",
+    "ingredientes": [
+      "500 g carne de cerdo",
+      "4 tortillas de maiz",
+      "1/2 cebolla",
+      "Cilantro",
+      "Salsa al gusto"
+    ],
+    "pasos": [
+      "Marinar y cocinar la carne.",
+      "Calentar tortillas.",
+      "Armar tacos con cebolla, cilantro y salsa."
+    ]
+  },
+  {
+    "id": "",
+    "title": "",
+    "image": "",
+    "ingredientes": [
+      "ingrediente1",
+      "ingrediente2",
+      "..."
+    ],
+    "pasos": [
+      "paso1",
+      "paso2",
+      "..."
+    ]
   }
 ]
