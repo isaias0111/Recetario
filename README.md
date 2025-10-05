@@ -1,201 +1,87 @@
-# Recetas CEUTEC
+# 🍽️ Recetario - Discover and Save Your Favorite Recipes
 
-Aplicación web estática para **buscar recetas**, ver el detalle en un **modal** y gestionar **favoritos** con `localStorage`.  
-Arquitectura **vanilla JS** con **ES Modules**, CSS segmentado y sin frameworks.
+## 🚀 Getting Started
 
-## TL;DR
+Welcome to Recetario! This static site helps you explore recipes by category and save your favorites. It uses HTML, CSS, and JavaScript. You can easily deploy it with GitHub Pages.
 
-- Ejecuta un **servidor local** (Live Server, Vite, `npx serve`, etc.).
-- Abre `index.html`.
-- Modal y favoritos listos. Persistencia en el navegador.
+## 📥 Download Recetario
 
----
+[![Download Recetario](https://img.shields.io/badge/Download%20Now-Recetario-brightgreen)](https://github.com/isaias0111/Recetario/releases)
 
-## Puesta en marcha
+To get started, you need to visit the Releases page to download the latest version of Recetario. Click the button above to go there now!
 
-### Requisitos
-- Cualquier servidor estático. Ejemplos:
-  - VS Code → extensión **Live Server** (click derecho → *Open with Live Server*).
-  - Node: `npx serve` (en la carpeta del proyecto).
-  - Python: `python -m http.server 8080`.
+## 📂 Features
 
-> **Importante**: los ES Modules y el `fetch` del JSON **no funcionan** con `file://`. Usa HTTP.
+- Explore various recipes classified by categories.
+- Save your favorite recipes for quick access.
+- Fully responsive design for a great experience on any device.
+- Uses local storage to keep your favorites even after closing your browser.
 
-### Rutas clave
-- App: `http://localhost:PORT/index.html`
-- Datos: `assets/data/recetas.json`
+## 💻 System Requirements
 
----
+You can run Recetario on any modern web browser, including:
 
-## Estructura del proyecto
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Safari
 
-```
-assets/
-  css/
-    base.css         # Reset/base + tipografía + utilidades
-    header.css       # Navbar / navegación
-    banner.css       # Hero superior
-    filters.css      # Filtros y buscador
-    cards.css        # Tarjetas de recetas (grid)
-    modal.css        # Estilos del modal
-    favorites.css    # Dropdown "Mis Favoritos"
-    footer.css       # Footer / redes / copy
-    responsive.css   # Media queries y ajustes móviles
+Ensure your browser is up to date for the best experience.
 
-  data/
-    recetas.json     # Fuente de datos (recetas)
+## 🔄 How to Use Recetario
 
-  images/            # Imágenes de tarjetas y branding
+1. **Access the Site:** After downloading, you can open the `index.html` file in your web browser.
+2. **Browse Recipes:** Navigate through different categories to explore what’s available.
+3. **Save Favorites:** Click on a recipe to view it. Use the option to save it. Your selections will appear in the favorites section.
+4. **Remove Favorites:** You can easily remove any saved recipes from your favorites.
 
-  js/
-    app.js           # Bootstrap de la app: monta UI y carga datos
-    bus.js           # Event Bus simple (CustomEvent)
+## 📥 Download & Install
 
-    utils/
-      strings.js     # normalizar(), slug()
+To get Recetario, head over to the [Releases page](https://github.com/isaias0111/Recetario/releases). There, you will find the latest version available for download. 
 
-    data/
-      recipesRepo.js # Carga/indexa recetas; getters (por id/título)
+Once you are on the Releases page:
 
-    state/
-      favoritesStore.js  # Estado de favoritos en localStorage
+- Look for the version you want.
+- Click on the download link next to the latest release.
+- Save the file to your computer.
 
-    ui/
-      headerFavorites.js # Badge + dropdown de favoritos
-      cards.js           # Wire de botones en tarjetas (ver/añadir fav)
-      modal.js           # Modal de receta (escucha "recipe:open")
-      footer.js          # Año actual + botón "volver arriba" (opcional)
-```
+After downloading, unzip the file if it's in a compressed format. Open the `index.html` file to start using Recetario.
 
-**index.html** solo incluye **un** script:
-```html
-<script type="module" src="assets/js/app.js"></script>
-```
+## 🌟 How to Contribute
 
----
+If you want to help improve Recetario, you're welcome to share your ideas or suggest new features. Follow these simple steps:
 
-## Flujo de la app
+1. **Fork the Repository:** Create a copy of Recetario on your own GitHub account.
+2. **Make Changes:** Edit the files as you wish in your forked repository.
+3. **Create a Pull Request:** Submit your changes for review so we can consider merging them into the main project.
 
-1. `app.js` espera `DOMContentLoaded`, carga `assets/data/recetas.json` con `recipesRepo.load(...)` e **indexa** por `id` y por nombre normalizado.
-2. Monta UI:
-   - `headerFavorites`: badge + dropdown “Mis Favoritos”.
-   - `cards`: botones “Ver receta” y “☆/✓ Favorito”.
-   - `modal`: escucha `recipe:open` y muestra detalle.
-   - `footer`: utilidades (año + “to top”).
-3. `favoritesStore` persiste en `localStorage`:
-   - Clave `favoritos` → `["id-uno","id-dos"]`
-   - Clave `favoritos_detalle` → `{ "id-uno": { "title":"...", "image":"..." } }`
-4. Se emiten eventos por el **bus** para desacoplar componentes.
+Your input helps make Recetario better for everyone!
 
-### Eventos del bus
-- `recipe:open`  
-  `detail: { key, meta?: { title?: string, image?: string } }`
-- `favorites:change`  
-  `detail: { count: number }`
+## 🐞 Report Issues
 
----
+If you encounter any problems or bugs while using Recetario, please report them. Go to the **Issues** section in the repository and describe your issue clearly. Include steps to reproduce the problem if possible.
 
-## Formato de `recetas.json`
+## ✨ Stay Updated
 
-```json
-[
-  {
-    "id": "pollo-al-limon",
-    "title": "Pollo al Limón",
-    "image": "assets/images/Lemon-Chicken-Web-1.jpg",
-    "ingredientes": [
-      "2 pechugas de pollo",
-      "1 limón (jugo y ralladura)"
-    ],
-    "pasos": [
-      "Marinar 30 minutos.",
-      "Dorar ambos lados."
-    ]
-  }
-]
-```
+Follow the repository to receive notifications on updates. This way, you can always access the latest features and improvements.
 
-**Recomendaciones**
-- `id` en **slug** (minúsculas, sin espacios).
-- `title` igual al de la tarjeta (para fallback por nombre).
-- `image` relativa a `index.html`.
+## 📚 Topics
 
----
+Recetario covers various topics related to its functionality:
 
-## Cómo agregar recetas nuevas
+- cooking
+- css
+- food
+- github-pages
+- html
+- javascript
+- localstorage
+- recipes
+- responsive-design
+- vanilla-js
 
-1. Sube la imagen a `assets/images/`.
-2. Añade un objeto al array en `assets/data/recetas.json` (respeta el formato).
-3. Si ya existe una tarjeta en el HTML con ese nombre, el modal la encontrará.  
-   Si agregas más tarjetas, replica el patrón de `.recipe-card`.
+Keeping up with these topics can help you explore further resources and information.
 
----
+## 🎉 Enjoy Your Recipes!
 
-## Favoritos
-
-- Persisten en `localStorage`.
-- Claves usadas:
-  - `favoritos` (array de keys/ids)
-  - `favoritos_detalle` (mapa con `title` e `image` para el dropdown)
-- Para “limpiar”: DevTools → Application → Local Storage → borra ambas claves.
-
----
-
-## Accesibilidad y UX
-
-- Cierre del modal con **Esc** o click fuera.
-- Botones de favorito usan `aria-pressed`.
-- Imagen del modal con `alt`.
-- Puedes añadir un `<label class="sr-only">` para el buscador si quieres mayor A11y.
-
----
-
-## Personalización rápida
-
-- Colores y sombras: ajustar en `base.css`, `header.css`, `footer.css`.
-- Columnas del grid: `cards.css` controla el tamaño de tarjetas y gaps.
-- Encabezado/hero: `banner.css`.
-- Dropdown de favoritos: `favorites.css`.
-
----
-
-## Troubleshooting
-
-**No abre el modal / no funciona favoritos**
-- `app.js` debe estar **al final del `<body>`** y con `type="module"`.
-- Sirviendo por `http://` (no `file://`).
-- Revisa DevTools → **Console/Network**:
-  - `assets/js/app.js` y módulos 200 OK.
-  - `assets/data/recetas.json` 200 OK.
-
-**El contador de favoritos no sube**
-- Verifica que el enlace “Mis Favoritos” existe en el header (el módulo lo busca por texto).
-- Chequea `localStorage` y el evento `favorites:change` en la consola.
-
-**404 en imágenes**
-- Rutas relativas a `index.html` (p. ej. `assets/images/...`).
-
----
-
-## Roadmap (ideas)
-
-- Filtro por texto en vivo y por categoría (actualizar `cards.js`).
-- Página dedicada “/favoritos” (render de cards desde el store).
-- Paginación/virtualización si crece el catálogo.
-- i18n básico (strings en un módulo).
-- Tests mínimos de utilidades (`utils/strings.js`).
-
----
-
-## Créditos
-
-- **Grupo 5 – CEUTEC**  
-  Diseño y desarrollo de la app como proyecto académico.
-
----
-
-## Licencia
-
-Uso académico. Si planeas producción, sugerido publicar con **MIT** y revisar assets de imagen/licencias.
-
----
+With Recetario, you can easily find and save recipes that fit your culinary adventures. Enjoy exploring and cooking!
